@@ -7,5 +7,4 @@ public interface AccountDAO {
 
     void deleteAccount(Account account);
 
-    void deleteAccount(int accountID);
 }
