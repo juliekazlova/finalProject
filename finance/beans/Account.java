@@ -3,7 +3,6 @@ package by.epam.java.kazlova.finance.beans;
 import java.util.Objects;
 
 public class Account {
-    private static int count=0;
     private int balance;
     private boolean isBlocked;
     private int accountID;
@@ -11,8 +10,7 @@ public class Account {
     public Account(int balance) {
         this.balance = balance;
         this.isBlocked = false;
-        accountID=count;
-        count++;
+        accountID=IdGenegator.getInstance().getId();
 
     }
 
