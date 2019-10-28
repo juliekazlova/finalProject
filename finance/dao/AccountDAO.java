@@ -1,10 +1,16 @@
 package by.epam.java.kazlova.finance.dao;
 
 import by.epam.java.kazlova.finance.beans.Account;
+import by.epam.java.kazlova.finance.beans.User;
 
 public interface AccountDAO {
-    void addAccount (Account account);
+    boolean readAccount (User user)throws DAOException;
 
-    void deleteAccount(Account account);
+    boolean deleteAccount(Account account)throws DAOException;
+
+    boolean updateAccount(Account account)throws DAOException;
+
+    boolean createAccount(Account account)throws DAOException;
+
 
 }

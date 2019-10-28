@@ -14,7 +14,7 @@ public class DAOFactory {
     public AccountDAO getAccountDAO(){
         return txtAccountDAO;
     }
-    public UserDAO getUserDAO() {
+    public  UserDAO getUserDAO() {
         return txtUserDAO;
     }
 }
