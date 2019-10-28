@@ -1,17 +1,23 @@
 package by.epam.java.kazlova.finance.services;
 
-import by.epam.java.kazlova.finance.beans.User;
+import by.epam.java.kazlova.finance.dao.DAOException;
+import by.epam.java.kazlova.finance.dao.DAOFactory;
+import by.epam.java.kazlova.finance.dao.UserDAO;
 
 public class ClientService {
-    void singIn(String login, String password){
+    public boolean authorization(String login, String password) throws ServiceException {
 
-    };
+        DAOFactory factory = DAOFactory.getInstance();
+        UserDAO userDAO = factory.getUserDAO();
 
-    void singOut(String login){
+        try {
+            if (userDAO.signIn(login, password)) {
+                return true;
+            } else
+                return false;
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
 
-    };
-
-    void registration(User user){
-
-    };
 }
