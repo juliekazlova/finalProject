@@ -7,11 +7,17 @@ public class Account {
     private boolean isBlocked;
     private int accountID;
 
-    public Account(int balance) {
+    public Account(int balance, boolean isBlocked) {
         this.balance = balance;
-        this.isBlocked = false;
+        this.isBlocked = isBlocked;
         accountID=IdGenegator.getInstance().getId();
 
+    }
+
+    public Account(int balance, boolean isBlocked, int accountID) {
+        this.balance = balance;
+        this.isBlocked = isBlocked;
+        this.accountID = accountID;
     }
 
     public int getBalance() {
@@ -56,5 +62,13 @@ public class Account {
                 ", isBlocked=" + isBlocked +
                 ", accountID=" + accountID +
                 '}';
+
+
+    }
+
+    public String getString(){
+        StringBuilder sb=new StringBuilder(accountID);
+        sb.append(" ").append(isBlocked).append(" ").append(balance);
+        return sb.toString();
     }
 }
