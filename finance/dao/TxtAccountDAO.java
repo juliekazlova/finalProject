@@ -33,6 +33,31 @@ finally {
     }
 
     @Override
+    public Account findAccount(int accountId) throws DAOException {
+        Scanner scanner = null;
+        int currentId;
+
+        try {
+            scanner = new Scanner(new File(ACCOUNT_SOURCE));
+            while (scanner.hasNext()) {
+                currentId=scanner.nextInt();
+               if(currentId==accountId){
+                   return new Account(currentId, scanner.nextBoolean(), scanner.nextInt() );
+               }
+            }
+
+            if (scanner != null) {
+                scanner.close();
+            }
+
+        } catch (FileNotFoundException e){
+            throw new DAOException();
+        }
+        return null;
+
+    }
+
+    @Override
     public boolean deleteAccount(Account account) throws DAOException {
 
         Scanner scanner = null;

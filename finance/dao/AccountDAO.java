@@ -12,5 +12,7 @@ public interface AccountDAO {
 
     boolean createAccount(Account account)throws DAOException;
 
+    Account findAccount(int accountId)throws DAOException;
+
 
 }
