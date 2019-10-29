@@ -20,11 +20,29 @@ public class BankService {
         }
     }
 
-    void editAccount(Account account)throws ServiceException{
+
+    void accountSetBlocked(int accountId) throws ServiceException{
         DAOFactory factory = DAOFactory.getInstance();
         AccountDAO accountDAO = factory.getAccountDAO();
         try {
-            if(!accountDAO.updateAccount(account)){
+            Account account=accountDAO.findAccount(accountId);
+            Account updatedAccount=new Account(accountId, true, account.getBalance());
+            if(!accountDAO.updateAccount(updatedAccount)) {
+                throw new DAOException();
+            }
+        }
+        catch (DAOException e){
+            throw new ServiceException();
+        }
+    }
+
+    void accountEditBalance(int accountId, int transaction) throws ServiceException{
+        DAOFactory factory = DAOFactory.getInstance();
+        AccountDAO accountDAO = factory.getAccountDAO();
+        try {
+            Account account=accountDAO.findAccount(accountId);
+            Account updatedAccount=new Account(accountId, account.isBlocked(), account.getBalance()+transaction);
+            if(!accountDAO.updateAccount(account)) {
                 throw new DAOException();
             }
         }
